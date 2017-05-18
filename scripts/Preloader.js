@@ -10,18 +10,18 @@ BasicGame.Preloader.prototype = {
     //displays a loading screen
 		this.preloaderText = this.add.text(this.world.centerX, this.world.centerY, 'loading....',
 		{
-			fontSize: '95px',
+			fontSize: '96px',
 			fill: '#fff',
 			align: 'center'
 		});
 
-		this.preloaderText.anchor.setTo(0.5,0.5);
+		this.preloaderText.anchor.setTo(0.5, 0.5);
 
 		//preload images, sprite and audio assets into memory
-		this.load.images('logo', 'assets/PhaserLogo.png');
-		this.load.images('starfield', 'assets/starfield.png');
-		this.load.images('startbutton', 'assets/startbutton.png');
-		this.load.images('ship', 'assets/ship.png');
+		this.load.image('logo', 'assets/PhaserLogo.png');
+		this.load.image('starfield', 'assets/starfield.png');
+		this.load.image('startbutton', 'assets/startbutton.png');
+		this.load.image('ship', 'assets/ship.png');
 	},
 
 	create: function () {
