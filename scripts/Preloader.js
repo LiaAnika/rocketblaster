@@ -8,7 +8,7 @@ BasicGame.Preloader.prototype = {
 
 	preload: function () {
     //displays a loading screen
-		this.preloaderText = this.add.text(this.world.centerX, this.world.centerY, 'loading....'
+		this.preloaderText = this.add.text(this.world.centerX, this.world.centerY, 'loading....',
 		{
 			fontSize: '95px',
 			fill: '#fff',
@@ -30,7 +30,7 @@ BasicGame.Preloader.prototype = {
 
 	update: function () {
 		this.game.state.start('MainMenu');
-		
+
 	}
 
 };
