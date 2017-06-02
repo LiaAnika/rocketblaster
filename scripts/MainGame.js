@@ -61,7 +61,62 @@ BasicGame.Game.prototype = {
 
 	update: function () {
 		//execute 'createUfo','createLife','moveShip','collisionDetection' function
+		this.createUfo();
+		this.createLife();
+		this.moveShip();
+	},
 
-	}
+		moveShip: function (){
+			if (cursors.left.isDown)
+						ship.body.velocity.x = -200;
+		}
+	 		else if (cursors.right.isDown){
+				ship.body.velocity.x = 200;
+			}
+			else {
+				ship.body.velocity.x = 0;
+			}
+
+			if (this.input.keyboard.isDown(Phaser.keyboard.SPACEBAR)) {this.fireBullet();
+			}
+		},
+
+			createUfo: function() {
+				Macintosh HD:Users:shaunreeves:Library:Mobile Documents:com~apple~CloudDocs:GitHub:phas
+				//Generate random number between 0 and 20
+				var random = this.rnd.integerInRange(0, 20);
+				//if random number equals 0 then create a ufo in a random x position and random y velocity
+				if (random === 0) {
+					// generating random position
+					var randomX = this.rnd.integerInRange(0, this.world.width - 150);
+
+					//creating a ufos groups
+					var ufo = ufos.create(randomX, -50, 'ufo');
+					this.physics.enable(ufo, Phaser.Physics.ARCADE);
+					//random velocity
+					ufo.body.velocity.y = this.rnd.integerInRange(100, 600);
+				}
+	},
+				createLife: function() {
+					//random numbers between 0-500
+					var random = this.rnd.integerInRange(0, 500);
+					//if random number = 0 then create a life in a random x position
+					if (random === 0) {
+						var randomX = this.rnd.integerInRange(0, this.world.width - 150);
+						//creating a ufo from the usfos
+						var life = lives.create(randomX, -50, 'life');
+						this.physics.enable(life, Phaser.physics.ARCADE);
+						life.body.velocity.y = 150;
+					}
+				},
+				//Generate bullets and position
+				fireBullet: function() {
+					if (this.time.now > nextFire && bullets.countDead() > 0) {
+						nextFire = this.time.now + fireRate;
+						var bullet = bullets.getFirstExists(false);
+						bullet.rest(ship.x, ship.y);
+						bullet.body.velocity.y = -400;
+					}
+				}
 
 };
