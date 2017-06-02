@@ -49,10 +49,11 @@ BasicGame.Game.prototype = {
 			bullets.enableBody = true;
 			bullets.physicsBodyType = Phaser.Physics.ARCADE;
 			bullets.createMultiple(30, 'bullet', 0, false);
-			bullets.setAll('outOfBoundsKill', true);
-			bullets.setAll('checkWorldBounds', true);
 			bullets.setAll('anchor.x', 0.5);
 			bullets.setAll('anchor.y', 0.5);
+			bullets.setAll('outOfBoundsKill', true);
+			bullets.setAll('checkWorldBounds', true);
+
 
 			// setting the keyboard to accpect LEFT RIGHT SPACE input
 			this.input.keyboard.addKeyCapture([Phaser.keyboard.LEFT, Phaser.keyboard.RIGHT, Phaser.keyboard.SPACEBAR]);
@@ -114,7 +115,7 @@ BasicGame.Game.prototype = {
 					if (this.time.now > nextFire && bullets.countDead() > 0) {
 						nextFire = this.time.now + fireRate;
 						var bullet = bullets.getFirstExists(false);
-						bullet.rest(ship.x, ship.y);
+						bullet.reset(ship.x, ship.y);
 						bullet.body.velocity.y = -400;
 					}
 				}
