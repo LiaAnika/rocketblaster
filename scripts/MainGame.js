@@ -65,6 +65,8 @@ BasicGame.Game.prototype = {
 		this.createUfo();
 		this.createLife();
 		this.moveShip();
+		this.collisionDetection();
+
 	},
 
 		moveShip: function (){
@@ -83,8 +85,7 @@ BasicGame.Game.prototype = {
 		},
 
 			createUfo: function() {
-				Macintosh HD:Users:shaunreeves:Library:Mobile Documents:com~apple~CloudDocs:GitHub:phas
-				//Generate random number between 0 and 20
+			 //Generate random number between 0 and 20
 				var random = this.rnd.integerInRange(0, 20);
 				//if random number equals 0 then create a ufo in a random x position and random y velocity
 				if (random === 0) {
@@ -95,7 +96,7 @@ BasicGame.Game.prototype = {
 					var ufo = ufos.create(randomX, -50, 'ufo');
 					this.physics.enable(ufo, Phaser.Physics.ARCADE);
 					//random velocity
-					ufo.body.velocity.y = this.rnd.integerInRange(100, 600);
+					ufo.body.velocity.y = this.rnd.integerInRange(200, 300);
 				}
 	},
 				createLife: function() {
@@ -118,6 +119,22 @@ BasicGame.Game.prototype = {
 						bullet.reset(ship.x, ship.y);
 						bullet.body.velocity.y = -400;
 					}
-				}
+				},
+				//check for collisions
+				collisionDetection: function(){
+					this.physics.arcade.overlap(ship, ufos, this.collideUfo, null, this);
+					this.physics.arcade.overlap(ship, lives, this.collectLife, null, this);
+					this.physics.arcade.overlap(bullets, ufos, this.destroyUfo, nullm this);
+				},
 
+				//collisions between player and ufos
+				collideUfo: function (ship, ufo){
+					ufo.kill();
+					bullet.kill();
+				},
+
+				//collision between player and life
+				collectLife: function (ship, life){
+					life.kill();
+				}
 };
