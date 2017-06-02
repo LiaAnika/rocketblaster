@@ -3,7 +3,7 @@ BasicGame.Game = function (game) {};
 // Graphical objects
 var ship;
 var usfos;
-var lives
+var lives;
 
 var bullets;
 var fireRate = 100;
