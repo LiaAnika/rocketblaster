@@ -36,8 +36,13 @@ BasicGame.Preloader.prototype = {
 	},
 
 	update: function () {
+        if (this.cache.isSoundDecoded('music') && this.ready == false) {
+            this.ready = true;
+        
 		this.game.state.start('MainMenu');
 
 	}
+        
+    }
 
 };
