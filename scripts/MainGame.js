@@ -211,7 +211,7 @@ BasicGame.Game.prototype = {
                     this.physics.arcade.overlap(ship, lives, this.collectLife, null, this);
                     this.physics.arcade.overlap(bullets, ufos, this.destroyUfo, null, this);
                     
-                }
+                },
             //funcation executed if there is collision between player and ufo. Ufo is destroyed, animation &sound, reduce lifeTotal
                     collideUfo: function (ship,ufo) {
                         explosionAudio.play();
