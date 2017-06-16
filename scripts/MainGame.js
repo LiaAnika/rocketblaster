@@ -44,7 +44,7 @@ BasicGame.Game.prototype = {
         this.starfield = this.add.tileSprite(0, 0, 800, 600, 'starfield');
         //adding the ship onto the screen, set the physics and the boundarys 
         this.ship = this.add.sprite((this.world.width / 2), this.world.height - 50, 'ship');
-        ship.anchor.setTo(0.5,0);
+        ship.anchor.setTo(0.5, 0);
         this.physics.enable(ship, Phaser.Physics.ARCADE);
         ship.body.collideWorldBounds = true;
         
@@ -92,7 +92,7 @@ BasicGame.Game.prototype = {
     });
        //the lifetotal 
         lifeTotal = 3;
-        lifeTotalText = text = 'Lives:' + lifeTotal;
+        lifeTotalText.text = 'Lives:' + lifeTotal;
         
         timerText = this.add.text(350, 16, 'Time: 0', {
             font: '32px arial',
@@ -123,7 +123,7 @@ BasicGame.Game.prototype = {
         cursors = this.input.keyboard.createCursorKeys();
         
         //load the audio
-        bulletAudio = this.add.backgroundPosition('bullet');
+        bulletAudio = this.add.audio('bullet');
         explosionAudio = this.add.audio('explosion');
         music = this.add.audio('music', 1, true);
         music.play('', 0, 1, true);
