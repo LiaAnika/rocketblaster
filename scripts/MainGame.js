@@ -35,7 +35,7 @@ BasicGame.Game.prototype = {
     
     create: function () {
         //specifying the physics game engine to ARCADE
-        this.physics.startSystem(Phaser.Physics.ARCASE);
+        this.physics.startSystem(Phaser.Physics.ARCADE);
         //Adding the starfield, logo onto the screen 
         this.starfield = this.add.tileSprite(0, 0, 800, 600, 'starfield');
         //adding the ship onto the screen, set the physics and the boundarys 
