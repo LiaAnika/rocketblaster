@@ -2,7 +2,7 @@ BasicGame.MainMenu = function (game) {};
 
 var startButton;
 var starfield;
-var logo:
+var logo;
 
 BasicGame.MainMenu.prototype = {
     
