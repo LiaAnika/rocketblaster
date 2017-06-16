@@ -188,7 +188,7 @@ BasicGame.Game.prototype = {
             //generating random position in the x Axis 
                     var randomX = this.rnd.integerInRange(0, this.world.width - 150);
             //creating a ufo from the usfos group and setting the physics
-                    var life + lives.create(randomX, -50, 'life');
+                    var life = lives.create(randomX, -50, 'life');
                     this.physics.enable(life, Phaser.Physics.ARCADE);
                 //generating a random velocity 
                     life.body.velocity.y = 150;
