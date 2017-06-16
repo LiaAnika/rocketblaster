@@ -114,7 +114,7 @@ BasicGame.Game.prototype = {
         gameOver = false;
         
         //create a restart button and hide on screen
-        restartButton = this.add.button(((this.world.width / 2), this.world.height / 2)+50, 'startButton', this.restartGame); 
+        restartButton = this.add.button((this.world.width / 2), (this.world.height / 2)+50, 'startButton', this.restartGame); 
         restartButton.anchor.set(0.5);
         restartButton.visible = false;
         
