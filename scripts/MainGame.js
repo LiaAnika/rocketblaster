@@ -63,7 +63,7 @@ BasicGame.Game.prototype = {
         this.physics.enable(lives, Phaser.Physics.ARCADE);
         
         lives.setAll('outOfBoundsKill', true);
-        lives.setall('checkWorldBounds', true); 
+        lives.setAll('checkWorldBounds', true); 
         lives.setAll('anchor.x', 0.5); 
         lives.setAll('anchor.y', 0.5); 
         
