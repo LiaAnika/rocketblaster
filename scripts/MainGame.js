@@ -2,8 +2,8 @@ BasicGame.Game = function (game) {};
 
 //graphical Object 
 var ship; 
-var ufos:
-var lives:
+var ufos;
+var lives;
 
 var bullets;
 var fireRate = 100;
@@ -39,7 +39,7 @@ BasicGame.Game.prototype = {
         //Adding the starfield, logo onto the screen 
         this.starfield = this.add.tileSprite(0, 0, 800, 600, 'starfield');
         //adding the ship onto the screen, set the physics and the boundarys 
-        ship = this.add.sprite((this.world.width / 2), this world.height - 50, 'ship');
+        ship = this.add.sprite((this.world.width / 2), this.world.height - 50, 'ship');
         ship.achor.setTo(0.5,0);
         this.physics.enable(ship, Phaser.Physics.ARCADE);
         ship.body.collideWorldBounds = true;
@@ -88,7 +88,7 @@ BasicGame.Game.prototype = {
     });
        //the lifetotal 
         lifeTotal = 3;
-        lifeTotalText text = 'Lives:' + lifeTotal;
+        lifeTotalText = text = 'Lives:' + lifeTotal;
         
         timerText = this.add.text(350, 16, 'Time: 0', {
             font: '32px arial',
@@ -99,7 +99,7 @@ BasicGame.Game.prototype = {
         seconds = 0;
         timerText.text = 'Time: ' + seconds;
         
-        gameOverText = this.add..text(this.world.centerX, this.world.centerY-50, 'Game Over',{
+        gameOverText = this.add.text(this.world.centerX, this.world.centerY-50, 'Game Over',{
             font: '96px arial',
             fill: '#fff',
             align: 'center'
@@ -110,13 +110,13 @@ BasicGame.Game.prototype = {
         gameOver = false;
         
         //create a restart button and hide on screen
-        restartButton = this.add.button((this.world.width / 2), this.world.height / 2)+50, 'startButton', this.restartGame); 
+        restartButton = this.add.button(((this.world.width / 2), this.world.height / 2)+50, 'startButton', this.restartGame); 
         restartButton.anchor.set(0.5);
         restartButton.visible = false;
         
         //setting the keyboard to accept directions
         this.input.keyboard.addkeyCapture([Phaser.Keyboard.LEFT, Phaser.Keyboard.RIGHT, Phaser.Keyboard.SPACEBAR]);
-        cursors = this.input.keyboard.createCurorKeys.();
+        cursors = this.input.keyboard.createCursorKeys();
         
         //load the audio
         bulletAudio = this.add.backgroundPosition('bullet');
