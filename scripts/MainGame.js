@@ -9,6 +9,17 @@ var bullets;
 var fireRate = 100;
 var nextFire = 0;
 
+//misc variable
+var cursors;
+var gameOverText;
+var restartButton;
+var gameOver;
+
+//timer
+var seconds;
+var timer;
+var timerText;
+
 //score and lives
 var score;
 var lifeTotal;
@@ -20,26 +31,19 @@ var music;
 var bulletAudio;
 var explosionAudio; 
 
-//timer
-var seconds;
-var timer;
-var timerText;
 
-//misc variable
-var cursors;
-var gameOverText;
-var restartButton;
-var gameOver;
+
+
 
 BasicGame.Game.prototype = {
     
-    create: function () {
+    create: function() {
         //specifying the physics game engine to ARCADE
         this.physics.startSystem(Phaser.Physics.ARCADE);
         //Adding the starfield, logo onto the screen 
         this.starfield = this.add.tileSprite(0, 0, 800, 600, 'starfield');
         //adding the ship onto the screen, set the physics and the boundarys 
-        ship = this.add.sprite((this.world.width / 2), this.world.height - 50, 'ship');
+        this.ship = this.add.sprite((this.world.width / 2), this.world.height - 50, 'ship');
         ship.achor.setTo(0.5,0);
         this.physics.enable(ship, Phaser.Physics.ARCADE);
         ship.body.collideWorldBounds = true;
