@@ -119,7 +119,7 @@ BasicGame.Game.prototype = {
         restartButton.visible = false;
         
         //setting the keyboard to accept directions
-        this.input.keyboard.addkeyCapture([Phaser.Keyboard.LEFT, Phaser.Keyboard.RIGHT, Phaser.Keyboard.SPACEBAR]);
+        this.input.keyboard.addKeyCapture([Phaser.Keyboard.LEFT, Phaser.Keyboard.RIGHT, Phaser.Keyboard.SPACEBAR]);
         cursors = this.input.keyboard.createCursorKeys();
         
         //load the audio
