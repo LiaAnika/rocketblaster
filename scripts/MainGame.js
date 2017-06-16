@@ -1,4 +1,4 @@
-BasicGame.Game = function (game) {};
+BasicGame.Game = function(game) {};
 
 //graphical Object 
 var ship; 
@@ -154,7 +154,7 @@ BasicGame.Game.prototype = {
                     ship.body.velocity.x = -200;
                 }
             // right arrow key is down 
-                if (cursors.right.isDown){
+               else if (cursors.right.isDown){
                     ship.body.velocity.x = 200;
                 }
             //else stop ship 
