@@ -182,17 +182,17 @@ BasicGame.Game.prototype = {
       //Generate random X position
       var randomX = this.rnd.integerInRange(0, this.world.width - 150);
       //Create UFO from the UFOs group and set the physics
-      var ufo = ufos.create(randomX, - 50, 'ufoAnimation');
+      var ufo = ufos.create(randomX, - 50, 'ufo');
       this.physics.enable(ufo, Phaser.Physics.ARCADE);
-      ufo.animations.add('ufoAnimation', [0, 1], 5, true);
-      ufo.play('ufoAnimation');
+      ufo.animations.add('ufo', [0, 1], 5, true);
+      ufo.play('ufo');
       //ufo.body.moves = true;
       //Generate random velocity
       ufo.body.velocity.y = this.rnd.integerInRange(100, 600);
       /*  //Animate UFOs
-        animation = this.add.sprite(ufo.body.x, ufo.body.y, 'ufoAnimation');
-        animation.animations.add('ufoAnimation');
-        animation.animations.play('ufoAnimation', 15, true);*/
+        animation = this.add.sprite(ufo.body.x, ufo.body.y, 'ufo');
+        animation.animations.add('ufo');
+        animation.animations.play('ufo', 15, true);*/
     }
   },
   createLife: function () {
