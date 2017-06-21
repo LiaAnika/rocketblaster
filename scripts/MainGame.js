@@ -189,10 +189,10 @@ BasicGame.Game.prototype = {
       //ufo.body.moves = true;
       //Generate random velocity
       ufo.body.velocity.y = this.rnd.integerInRange(100, 600);
-      //Animate UFOs
+   /*   //Animate UFOs
         animation = this.add.sprite(ufo.body.x, ufo.body.y, 'ufo');
         animation.animations.add('ufo');
-        animation.animations.play('ufo', 15, true);
+        animation.animations.play('ufo', 15, true); */ 
     }
   },
   createLife: function () {
