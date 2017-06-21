@@ -194,11 +194,7 @@ BasicGame.Game.prototype = {
         animation.animations.add('ufo');
         animation.animations.play('ufo', 15, true);*/
       
-    }
-  },
-  
-   createUfo: function () {
-    //When executed, creates new UFO enemies
+      //When executed, creates new UFO enemies
     //Randomly generates a number between 0 and 20
     var random = this.rnd.integerInRange(0, 20);
     //If random = 0 , then create UFO in a random x position and a random y velocity
