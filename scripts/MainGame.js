@@ -189,31 +189,10 @@ BasicGame.Game.prototype = {
       //ufo.body.moves = true;
       //Generate random velocity
       ufo.body.velocity.y = this.rnd.integerInRange(100, 600);
-      /*  //Animate UFOs
+      //Animate UFOs
         animation = this.add.sprite(ufo.body.x, ufo.body.y, 'ufo');
         animation.animations.add('ufo');
-        animation.animations.play('ufo', 15, true);*/
-      
-      //When executed, creates new UFO enemies
-    //Randomly generates a number between 0 and 20
-    var random = this.rnd.integerInRange(0, 20);
-    //If random = 0 , then create UFO in a random x position and a random y velocity
-    if (random === 0) {
-      //Generate random X position
-      var randomX = this.rnd.integerInRange(0, this.world.width - 150);
-      //Create UFO from the UFOs group and set the physics
-      var ufo = ufos.create(randomX, - 50, 'grapes');
-      this.physics.enable(ufo, Phaser.Physics.ARCADE);
-      ufo.animations.add('grapes', [0, 1], 5, true);
-      ufo.play('grapes');
-      //ufo.body.moves = true;
-      //Generate random velocity
-      ufo.body.velocity.y = this.rnd.integerInRange(100, 600);
-      /*  //Animate UFOs
-        animation = this.add.sprite(ufo.body.x, ufo.body.y, 'ufo');
-        animation.animations.add('ufo');
-        animation.animations.play('ufo', 15, true);*/
-      
+        animation.animations.play('ufo', 15, true);
     }
   },
   createLife: function () {
