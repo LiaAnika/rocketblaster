@@ -275,7 +275,7 @@ BasicGame.Game.prototype = {
                         //sprite debug info
                        // this.game.debug.bodyInfo(ship, 32, 100);
                         //this.game.debug.spriteBounds(ship);
-                    }
+                    //}
 }; 
 
 
