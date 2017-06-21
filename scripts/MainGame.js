@@ -203,7 +203,7 @@ BasicGame.Game.prototype = {
       var randomX = this.rnd.integerInRange(0, this.world.width - 150);
       //Create UFO from the UFOs group and set the physics
       var ufo = ufos.create(randomX, - 50, 'grapes');
-      this.physics.enable(grapes, Phaser.Physics.ARCADE);
+      this.physics.enable(ufo, Phaser.Physics.ARCADE);
       ufo.animations.add('grapes', [0, 1], 5, true);
       ufo.play('grapes');
       //ufo.body.moves = true;
