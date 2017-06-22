@@ -18,17 +18,15 @@ BasicGame.Preloader.prototype = {
 
 		//preload the images, sprites and audio assets into memory
 		this.load.image('logo', 'assets/PhaserLogo.png');
-		this.load.image('grass', 'assets/grass.png');
+		this.load.image('starfield', 'assets/starfield.png');
 		this.load.image('startButton', 'assets/startButton.png');
+		this.load.image('ship', 'assets/ship.png');
+		this.load.image('ufo', 'assets/ufo.png');
 		this.load.image('life', 'assets/lives.png');
 		this.load.image('bullet', 'assets/bullet.png');
-		this.load.image('timeup', 'assets/time.png');
 
-		this.load.spritesheet('mage', 'assets/mage.png', 64, 64, 8);
 		this.load.spritesheet('kaboom', 'assets/explode.png', 128, 128, 16);
 		this.load.spritesheet('lifeAnimation', 'assets/lifeAnimation.png', 100, 100, 4);
-		this.load.spritesheet('timeAnimation', 'assets/timeAnimation.png', 100, 100, 4);
-		this.load.spritesheet('skellySprite', 'assets/skelly.png', 64, 64, 4);
 
 		this.load.audio('music', ['assets/music.m4a', 'assets/music.mp3']);
 		this.load.audio('bullet', ['assets/laser_human.mp3']);
