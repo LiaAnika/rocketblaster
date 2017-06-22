@@ -247,7 +247,7 @@ BasicGame.Game.prototype = {
     animation.animations.add('explode');
     animation.animations.play('explode', 30, false, true);
     health++;
-    healthText.text = 'Lives: ' + health;
+    healthText.text = 'score' + score;
   },
   destroyUfo: function (bullet, ufo) {
     //Executed if there is a colllision between a UFO and a bullet
@@ -259,14 +259,14 @@ BasicGame.Game.prototype = {
     animation.animations.add('explode');
     animation.animations.play('explode', 30, false, true);
     score += 100;
-    scoreText.text = 'life: ' + score;
+    scoreText.text = 'score ' + score;
   },
   collectLife: function (ship, ufo) {
     //Executed when there is a collision between the player and life
     //Life is destroyed, animation and sound played, increased health
     ufo.kill();
     health--;
-    healthText.text = 'score ' + score;
+    healthText.text = 'life ' + life;
     var animation = this.add.sprite(ufo.body.x, ufo.body.y, 'lifeAnimation');
     animation.animations.add('lifeAnimation');
     animation.animations.play('lifeAnimation', 30, false, true);
