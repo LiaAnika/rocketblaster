@@ -176,7 +176,7 @@ BasicGame.Game.prototype = {
   createUfo: function () {
     //When executed, creates new UFO enemies
     //Randomly generates a number between 0 and 20
-    var random = this.rnd.integerInRange(0, 20);
+    var random = this.rnd.integerInRange(0, 500);
     //If random = 0 , then create UFO in a random x position and a random y velocity
     if (random === 0) {
       //Generate random X position
@@ -198,7 +198,7 @@ BasicGame.Game.prototype = {
   createLife: function () {
     //Function which spawns life, for the player to collected
     //Generate random number between 0 and 500
-    var random = this.rnd.integerInRange(0, 750);
+    var random = this.rnd.integerInRange(0, 20);
     //If random = 0 spawn a life at a random X position
     if (random === 0) {
       var randomX = this.rnd.integerInRange(0, this.world.width - 150);
@@ -236,9 +236,9 @@ BasicGame.Game.prototype = {
     this.physics.arcade.overlap(ship, ufos, this.collideUfo, null, this);
     this.physics.arcade.overlap(ship, lives, this.collectLife, null, this);
     this.physics.arcade.overlap(ship, timeup, this.collectTimeUp, null, this);
-    this.physics.arcade.overlap(bullets, ufos, this.destroyUfo, null, this);
+    
   },
- collideUfo: function (ship, ufo) {
+ collideUfo: function (ship, life) {
     //Executed if there is a collision between the ship and ufos
     //Ufo is destroyes, player looses 1 life and animations are played
     explosionAudio.play();
@@ -246,27 +246,27 @@ BasicGame.Game.prototype = {
     var animation = this.add.sprite(ufo.body.x, ufo.body.y, 'kaboom');
     animation.animations.add('explode');
     animation.animations.play('explode', 30, false, true);
-    health--;
+    health++;
     healthText.text = 'Lives: ' + health;
   },
   destroyUfo: function (bullet, ufo) {
     //Executed if there is a colllision between a UFO and a bullet
     //UFO is destroyed, plays sound and animation, increases score
     explosionAudio.play();
-    //ufo.kill();
+    ufo.kill();
     //bullet.kill();
     var animation = this.add.sprite(ufo.body.x, ufo.body.y, 'kaboom');
     animation.animations.add('explode');
     animation.animations.play('explode', 30, false, true);
     score += 100;
-    scoreText.text = 'Score: ' + score;
+    scoreText.text = 'life: ' + score;
   },
-  collectLife: function (ship, life) {
+  collectLife: function (ship, ufo) {
     //Executed when there is a collision between the player and life
     //Life is destroyed, animation and sound played, increased health
     life.kill();
-    health++;
-    healthText.text = 'Lives: ' + health;
+    health--;
+    healthText.text = 'score ' + score;
     var animation = this.add.sprite(life.body.x, life.body.y, 'lifeAnimation');
     animation.animations.add('lifeAnimation');
     animation.animations.play('lifeAnimation', 30, false, true);
