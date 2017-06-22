@@ -242,7 +242,7 @@ BasicGame.Game.prototype = {
     //Executed if there is a collision between the ship and ufos
     //Ufo is destroyes, player looses 1 life and animations are played
     explosionAudio.play();
-    ufo.kill();
+    life.kill();
     var animation = this.add.sprite(ufo.body.x, ufo.body.y, 'kaboom');
     animation.animations.add('explode');
     animation.animations.play('explode', 30, false, true);
@@ -264,7 +264,7 @@ BasicGame.Game.prototype = {
   collectLife: function (ship, ufo) {
     //Executed when there is a collision between the player and life
     //Life is destroyed, animation and sound played, increased health
-    life.kill();
+    ufo.kill();
     health--;
     healthText.text = 'score ' + score;
     var animation = this.add.sprite(life.body.x, life.body.y, 'lifeAnimation');
