@@ -255,9 +255,9 @@ BasicGame.Game.prototype = {
     explosionAudio.play();
     //ufo.kill();
     //bullet.kill();
-    //var animation = this.add.sprite(ufo.body.x, ufo.body.y, 'kaboom');
-    //animation.animations.add('explode');
-   // animation.animations.play('explode', 30, false, true);
+    var animation = this.add.sprite(ufo.body.x, ufo.body.y, 'kaboom');
+    animation.animations.add('explode');
+    animation.animations.play('explode', 30, false, true);
     score += 100;
     scoreText.text = 'Score: ' + score;
   },
