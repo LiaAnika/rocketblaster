@@ -7,12 +7,12 @@ BasicGame.Preloader = function (game) {
 BasicGame.Preloader.prototype = {
     preload: function () {
         
-        this.perloaderText = this.add.text(this.world.centerX, this.world.centerY, 'Loading...',{
+        this.perloaderText = this.add.text(this.world.centerX, this.world.centerY, 'Loading...', {
             fontSize: '96px',
             fill: '#fff',
             align: 'center'
         });
-        this.perloaderText.anchor.setTo(0.5,0.5);
+        this.perloaderText.anchor.setTo(0.5, 0.5);
         
         this.load.image('logo', 'assets/PhaserLogo.png');
         this.load.image('starfield', 'assets/starfield.png');
