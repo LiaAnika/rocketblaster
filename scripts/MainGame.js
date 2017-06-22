@@ -1,11 +1,11 @@
 BasicGame.Game = function (game) {
 };
 //Graphical objects
-var ship;
-var ufos; //Group of enemies drop from top of screen
+var mage;
+var skellys; //Group of enemies drop from top of screen
 var lives; //Group of lives which can be collected
 var timeup; //Group of clocks which can be collected to add 10s to timer
-var bullets; //projectiles shot by the ship
+var bullets; //projectiles shot by the mage
 var fireRate = 100; //Rate at which the bullets are fires
 var nextFire = 0;
 //Misc. Variables
@@ -34,25 +34,25 @@ BasicGame.Game.prototype = {
     this.physics.startSystem(Phaser.Physics.ARCADE);
     //Add the star field and logo on screen
     this.grass = this.add.tileSprite(0, 0, 800, 600, 'grass');
-    //Add the ship onto the screen, set physics and the boundaries
-    ship = this.add.sprite((this.world.width / 2), this.world.height - 50, 'ship');
-    ship.anchor.setTo(0.5, 0);
-    this.physics.enable(ship, Phaser.Physics.ARCADE);
-    ship.body.collideWorldBounds = true;
-    //SHIP animations
-    ship.animations.add('shipLeft', [4,5], 5, true);
-    ship.animations.add('shipRight', [6,7], 5, true);
-    ship.animations.add('shipBack', [0,1], 5, true);
-    ship.animations.add('shipFront', [2,3], 2, true);
+    //Add the mage onto the screen, set physics and the boundaries
+    mage = this.add.sprite((this.world.width / 2), this.world.height - 50, 'mage');
+    mage.anchor.setTo(0.5, 0);
+    this.physics.enable(mage, Phaser.Physics.ARCADE);
+    mage.body.collideWorldBounds = true;
+    //mage animations
+    mage.animations.add('mageLeft', [4,5], 5, true);
+    mage.animations.add('mageRight', [6,7], 5, true);
+    mage.animations.add('mageBack', [0,1], 5, true);
+    mage.animations.add('mageFront', [2,3], 2, true);
     //Creating Groups
-    //UFOs
-    //Create the UFO groups, set theirs physics and boundaries
-    ufos = this.add.group();
-    this.physics.enable(ufos, Phaser.Physics.ARCADE);
-    ufos.setAll('outOfBoundsKill', true);
-    ufos.setAll('checkWorldBounds', true);
-    ufos.setAll('anchor.x', 0.5);
-    ufos.setAll('anchor.y', 0.5);
+    //skellys
+    //Create the skelly groups, set theirs physics and boundaries
+    skellys = this.add.group();
+    this.physics.enable(skellys, Phaser.Physics.ARCADE);
+    skellys.setAll('outOfBoundsKill', true);
+    skellys.setAll('checkWorldBounds', true);
+    skellys.setAll('anchor.x', 0.5);
+    skellys.setAll('anchor.y', 0.5);
     //LIVES
     //Create the group of lives, set their physics and boundaries
     lives = this.add.group();
@@ -142,29 +142,29 @@ BasicGame.Game.prototype = {
     //execute trueGameOver function when one of the requirements is met
     if (health < 1 || seconds == 0 || gameOver === true) {
       this.trueGameOver();
-    }    //else execute 'createUfo','createLife','moveShip','collisionDetection' function
+    }    //else execute 'createSkelly','createLife','moveMage','collisionDetection' function
      else {
-      this.createUfo();
+      this.createSkelly();
       this.createLife();
       this.createTimeUp();
-      this.moveShip();
+      this.moveMage();
       this.collisionDetection();
     }
   },
-  moveShip: function () {
-    //Moves ship and fires the bullets using keyboard controls
-    //When Left Arrow pressed, moves ship Left
+  moveMage: function () {
+    //Moves mage and fires the bullets using keyboard controls
+    //When Left Arrow pressed, moves mage Left
     if (cursors.left.isDown) {
-      ship.body.velocity.x = //When Right Arrow pressed, moves ship Right
+      mage.body.velocity.x = //When Right Arrow pressed, moves mage Right
       - 200;
-      ship.animations.play('shipLeft');
+      mage.animations.play('mageLeft');
     } else if (cursors.right.isDown) {
-      ship.body.velocity.x = //No button pressed, stops horizontal movement
+      mage.body.velocity.x = //No button pressed, stops horizontal movement
       200;
-      ship.animations.play('shipRight');
+      mage.animations.play('mageRight');
     } else {
-      ship.body.velocity.x = 0;
-      ship.animations.play('shipBack');
+      mage.body.velocity.x = 0;
+      mage.animations.play('mageBack');
     }
     //SHOOTING
     //If SpaceBar is pressed, execute the 'fireBullet' function
@@ -173,32 +173,32 @@ BasicGame.Game.prototype = {
       this.fireBullet();
     }
   },
-  createUfo: function () {
-    //When executed, creates new UFO enemies
+  createSkelly: function () {
+    //When executed, creates new skelly enemies
     //Randomly generates a number between 0 and 20
-    var random = this.rnd.integerInRange(0, 500);
-    //If random = 0 , then create UFO in a random x position and a random y velocity
+    var random = this.rnd.integerInRange(0, 20);
+    //If random = 0 , then create skelly in a random x position and a random y velocity
     if (random === 0) {
       //Generate random X position
       var randomX = this.rnd.integerInRange(0, this.world.width - 150);
-      //Create UFO from the UFOs group and set the physics
-      var ufo = ufos.create(randomX, - 50, 'ufo');
-      this.physics.enable(ufo, Phaser.Physics.ARCADE);
-      ufo.animations.add('ufo', [0, 1], 5, true);
-      ufo.play('ufo');
-      //ufo.body.moves = true;
+      //Create skelly from the skellys group and set the physics
+      var skelly = skellys.create(randomX, - 50, 'skellySprite');
+      this.physics.enable(skelly, Phaser.Physics.ARCADE);
+      skelly.animations.add('skellySprite', [0, 1], 5, true);
+      skelly.play('skellySprite');
+      //skelly.body.moves = true;
       //Generate random velocity
-      ufo.body.velocity.y = this.rnd.integerInRange(100, 600);
-   /*   //Animate UFOs
-        animation = this.add.sprite(ufo.body.x, ufo.body.y, 'ufo');
-        animation.animations.add('ufo');
-        animation.animations.play('ufo', 15, true); */ 
+      skelly.body.velocity.y = this.rnd.integerInRange(100, 600);
+      /*  //Animate skellys
+        animation = this.add.sprite(skelly.body.x, skelly.body.y, 'skellySprite');
+        animation.animations.add('skellySprite');
+        animation.animations.play('skellySprite', 15, true);*/
     }
   },
   createLife: function () {
     //Function which spawns life, for the player to collected
     //Generate random number between 0 and 500
-    var random = this.rnd.integerInRange(0, 20);
+    var random = this.rnd.integerInRange(0, 750);
     //If random = 0 spawn a life at a random X position
     if (random === 0) {
       var randomX = this.rnd.integerInRange(0, this.world.width - 150);
@@ -226,52 +226,52 @@ BasicGame.Game.prototype = {
     if (this.time.now > nextFire && bullets.countDead() > 0) {
       nextFire = this.time.now + fireRate;
       var bullet = bullets.getFirstExists(false);
-      bullet.reset(ship.x, ship.y);
+      bullet.reset(mage.x, mage.y);
       bullet.body.velocity.y = - 400;
       bulletAudio.play('', 0, 0.05);
     }
   },
   collisionDetection: function () {
     //Function executed during gameplay, checks for collisions
-    this.physics.arcade.overlap(ship, lives, this.collideUfo, null, this);
-    this.physics.arcade.overlap(ship, ufos, this.collectLife, null, this);
-    this.physics.arcade.overlap(ship, timeup, this.collectTimeUp, null, this);
-    
+    this.physics.arcade.overlap(mage, skellys, this.collideSkelly, null, this);
+    this.physics.arcade.overlap(mage, lives, this.collectLife, null, this);
+    this.physics.arcade.overlap(mage, timeup, this.collectTimeUp, null, this);
+    this.physics.arcade.overlap(bullets, skellys, this.destroySkelly, null, this);
   },
- collideUfo: function (ship, life) {
-    //Executed if there is a collision between the ship and ufos
-    //Ufo is destroyes, player looses 1 life and animations are played
+  collideSkelly: function (mage, skelly) {
+    //Executed if there is a collision between the mage and skellys
+    //skelly is destroyes, player looses 1 life and animations are played
     explosionAudio.play();
-    life.kill();
-    var animation = this.add.sprite(life.body.x, life.body.y, 'kaboom');
+    skelly.kill();
+    var animation = this.add.sprite(skelly.body.x, skelly.body.y, 'kaboom');
     animation.animations.add('explode');
     animation.animations.play('explode', 30, false, true);
-    health++;
-    healthText.text = 'score' + score;
+    health--;
+    healthText.text = 'Lives: ' + health;
   },
-  destroyUfo: function (bullet, ufo) {
-    //Executed if there is a colllision between a UFO and a bullet
-    //UFO is destroyed, plays sound and animation, increases score
+  destroySkelly: function (bullet, skelly) {
+    //Executed if there is a colllision between a skelly and a bullet
+    //skelly is destroyed, plays sound and animation, increases score
     explosionAudio.play();
-    ufo.kill();
-    //bullet.kill();
-    var animation = this.add.sprite(life.body.x, life.body.y, 'kaboom');
+    skelly.kill();
+    bullet.kill();
+    var animation = this.add.sprite(skelly.body.x, skelly.body.y, 'kaboom');
     animation.animations.add('explode');
     animation.animations.play('explode', 30, false, true);
     score += 100;
-    scoreText.text = 'score ' + score;
+    scoreText.text = 'Score: ' + score;
   },
-  collectLife: function (ship, ufo) {
+  collectLife: function (mage, life) {
     //Executed when there is a collision between the player and life
     //Life is destroyed, animation and sound played, increased health
-    ufo.kill();
-    health--;
-    healthText.text = 'life ' + life;
-    var animation = this.add.sprite(ufo.body.x, ufo.body.y, 'lifeAnimation');
+    life.kill();
+    health++;
+    healthText.text = 'Lives: ' + health;
+    var animation = this.add.sprite(life.body.x, life.body.y, 'lifeAnimation');
     animation.animations.add('lifeAnimation');
     animation.animations.play('lifeAnimation', 30, false, true);
   },
-  collectTimeUp: function (ship, extratime) {
+  collectTimeUp: function (mage, extratime) {
     //Executed when there is a collision between the player and life
     //Life is destroyed, animation and sound played, increased health
     extratime.kill();
@@ -288,10 +288,10 @@ BasicGame.Game.prototype = {
   },
   trueGameOver: function () {
     //Executed when game ends, kills all objects, stops timer and displays game over screen
-    ship.body.velocity.x = 0;
-    ship.body.x = (this.world.width / 2) - (ship.body.width / 2);
-    ship.animations.play('shipFront');
-    ufos.callAll('kill');
+    mage.body.velocity.x = 0;
+    mage.body.x = (this.world.width / 2) - (mage.body.width / 2);
+    mage.animations.play('mageFront');
+    skellys.callAll('kill');
     lives.callAll('kill');
     bullets.callAll('kill');
     music.stop();
@@ -312,8 +312,8 @@ BasicGame.Game.prototype = {
   render: function () {
     //Sprite debug info
     if (showDebug) {
-      this.game.debug.bodyInfo(ship, 32, 100);
-      this.game.debug.spriteBounds(ship);
+      this.game.debug.bodyInfo(mage, 32, 100);
+      this.game.debug.spriteBounds(mage);
     }
   },
 };
