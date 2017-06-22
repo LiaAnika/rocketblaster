@@ -243,7 +243,7 @@ BasicGame.Game.prototype = {
     //Ufo is destroyes, player looses 1 life and animations are played
     explosionAudio.play();
     life.kill();
-    var animation = this.add.sprite(ufo.body.x, ufo.body.y, 'kaboom');
+    var animation = this.add.sprite(life.body.x, ufo.body.y, 'kaboom');
     animation.animations.add('explode');
     animation.animations.play('explode', 30, false, true);
     health++;
