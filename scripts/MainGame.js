@@ -238,7 +238,7 @@ BasicGame.Game.prototype = {
     this.physics.arcade.overlap(ship, timeup, this.collectTimeUp, null, this);
     this.physics.arcade.overlap(bullets, ufos, this.destroyUfo, null, this);
   },
-  collideUfo: function (ship, ufo) {
+  /*collideUfo: function (ship, ufo) {
     //Executed if there is a collision between the ship and ufos
     //Ufo is destroyes, player looses 1 life and animations are played
     explosionAudio.play();
@@ -260,7 +260,7 @@ BasicGame.Game.prototype = {
     animation.animations.play('explode', 30, false, true);
     score += 100;
     scoreText.text = 'Score: ' + score;
-  },
+  },*/
   collectLife: function (ship, life) {
     //Executed when there is a collision between the player and life
     //Life is destroyed, animation and sound played, increased health
