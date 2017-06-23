@@ -39,14 +39,14 @@ BasicGame.Game.prototype = {
     ship.anchor.setTo(0.5, 0);
     this.physics.enable(ship, Phaser.Physics.ARCADE);
     ship.body.collideWorldBounds = true;
-    //SHIP animations
+    //ship animations
     ship.animations.add('shipLeft', [4,5], 5, true);
     ship.animations.add('shipRight', [6,7], 5, true);
     ship.animations.add('shipBack', [0,1], 5, true);
     ship.animations.add('shipFront', [2,3], 2, true);
     //Creating Groups
-    //UFOs
-    //Create the UFO groups, set theirs physics and boundaries
+    //ufos
+    //Create the ufo groups, set theirs physics and boundaries
     ufos = this.add.group();
     this.physics.enable(ufos, Phaser.Physics.ARCADE);
     ufos.setAll('outOfBoundsKill', true);
@@ -142,7 +142,7 @@ BasicGame.Game.prototype = {
     //execute trueGameOver function when one of the requirements is met
     if (health < 1 || seconds == 0 || gameOver === true) {
       this.trueGameOver();
-    }    //else execute 'createUfo','createLife','moveShip','collisionDetection' function
+    }    //else execute 'createUfo','createLife','moveship','collisionDetection' function
      else {
       this.createUfo();
       this.createLife();
@@ -174,14 +174,14 @@ BasicGame.Game.prototype = {
     }
   },
   createUfo: function () {
-    //When executed, creates new UFO enemies
+    //When executed, creates new ufo enemies
     //Randomly generates a number between 0 and 20
     var random = this.rnd.integerInRange(0, 20);
-    //If random = 0 , then create UFO in a random x position and a random y velocity
+    //If random = 0 , then create ufo in a random x position and a random y velocity
     if (random === 0) {
       //Generate random X position
       var randomX = this.rnd.integerInRange(0, this.world.width - 150);
-      //Create UFO from the UFOs group and set the physics
+      //Create ufo from the ufos group and set the physics
       var ufo = ufos.create(randomX, - 50, 'ufo');
       this.physics.enable(ufo, Phaser.Physics.ARCADE);
       ufo.animations.add('ufo', [0, 1], 5, true);
@@ -189,10 +189,10 @@ BasicGame.Game.prototype = {
       //ufo.body.moves = true;
       //Generate random velocity
       ufo.body.velocity.y = this.rnd.integerInRange(100, 600);
-   /*   //Animate UFOs
+      /*  //Animate UFOs
         animation = this.add.sprite(ufo.body.x, ufo.body.y, 'ufo');
         animation.animations.add('ufo');
-        animation.animations.play('ufo', 15, true); */ 
+        animation.animations.play('ufo', 15, true);*/
     }
   },
   createLife: function () {
@@ -238,11 +238,11 @@ BasicGame.Game.prototype = {
     this.physics.arcade.overlap(ship, timeup, this.collectTimeUp, null, this);
     this.physics.arcade.overlap(bullets, ufos, this.destroyUfo, null, this);
   },
- collideUfo: function (ship, ufo) {
+  collideUfo: function (ship, ufo) {
     //Executed if there is a collision between the ship and ufos
     //Ufo is destroyes, player looses 1 life and animations are played
     explosionAudio.play();
-    //ufo.kill();
+    ufo.kill();
     var animation = this.add.sprite(ufo.body.x, ufo.body.y, 'kaboom');
     animation.animations.add('explode');
     animation.animations.play('explode', 30, false, true);
@@ -250,11 +250,11 @@ BasicGame.Game.prototype = {
     healthText.text = 'Lives: ' + health;
   },
   destroyUfo: function (bullet, ufo) {
-    //Executed if there is a colllision between a UFO and a bullet
-    //UFO is destroyed, plays sound and animation, increases score
+    //Executed if there is a colllision between a ufo and a bullet
+    //ufo is destroyed, plays sound and animation, increases score
     explosionAudio.play();
-    //ufo.kill();
-    //bullet.kill();
+    ufo.kill();
+    bullet.kill();
     var animation = this.add.sprite(ufo.body.x, ufo.body.y, 'kaboom');
     animation.animations.add('explode');
     animation.animations.play('explode', 30, false, true);
